@@ -5,7 +5,9 @@ import (
 	"backend/handlers/categories"
 	"backend/handlers/tasks"
 	"log"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
@@ -15,6 +17,12 @@ func main() {
 	database.ConnectDB()
 
 	api := app.Group("/api")
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:5173",
+		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowMethods: "GET, POST, PUT, DELETE, OPTIONS",
+	}))
 
 	api.Post("/tasks/createTask", tasks.CreateTask)
 	api.Delete("/tasks/deleteTask/:id", tasks.DeleteTask)
