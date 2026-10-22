@@ -11,6 +11,11 @@ import (
 func DeleteCategory(c *fiber.Ctx) error {
 
 	id, rawCategory := c.Params("id"), c.Params("category")
+	var category models.Category
+
+	if err := database.DB.First(&category, id).Error; err != nil {
+		return c.Status(404).JSON(fiber.Map{"error": "Задача не найден"})
+	}
 
 	decodedCategory, err := url.QueryUnescape(rawCategory)
 	if err != nil {

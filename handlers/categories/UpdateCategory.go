@@ -13,7 +13,7 @@ func UpdateCategory(c *fiber.Ctx) error {
 	var category models.Category
 
 	if err := database.DB.First(&category, id).Error; err != nil {
-		return c.Status(404).JSON(fiber.Map{"error": "Категория не найден"})
+		return c.Status(404).JSON(fiber.Map{"error": "Категория не найдена"})
 	}
 
 	if err := c.BodyParser(&category); err != nil {
@@ -24,6 +24,6 @@ func UpdateCategory(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"error": "Не удалось обновить категория"})
 	}
 
-	return c.Status(fiber.StatusOK).JSON("Категория была изменена")
+	return c.Status(fiber.StatusOK).JSON("Server: Категория была обновлена")
 
 }
