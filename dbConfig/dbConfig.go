@@ -30,6 +30,9 @@ func ConnectDB() {
 		log.Fatal("Ошибка миграции: ", err)
 	}
 
+	uncategorized := models.Category{Category: "Uncategorized", Description: "Uncategorized tasks group"}
+	DB.Create(&uncategorized)
+
 	log.Println("Миграция базы данных успешно завершена.")
 }
 
