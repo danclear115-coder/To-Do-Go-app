@@ -27,6 +27,7 @@ func main() {
 	api.Delete("/tasks/deleteTask/:id", tasks.DeleteTask)
 	api.Get("/tasks/getTasks", tasks.GetTasks)
 	api.Put("/tasks/updateTask/:id", tasks.UpdateTask)
+	api.Put("/tasks/completeTask/:id/", tasks.CompleteTask)
 
 	api.Post("/categories/createCategory", categories.CreateCategory)
 	api.Delete("/categories/deleteCategory/:id/:category", categories.DeleteCategory)
